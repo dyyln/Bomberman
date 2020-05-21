@@ -21,6 +21,9 @@ public:
     
     UPROPERTY(EditAnywhere)
     UBoxComponent* BoxComponent;
+
+    UPROPERTY(EditAnywhere)
+    class UParticleSystem* ExplosionEffect;
     
 	// Sets default values for this actor's properties
 	ABombermanBomb();

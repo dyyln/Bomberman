@@ -3,6 +3,7 @@
 
 #include "BombermanBomb.h"
 #include "BombermanPlayer.h"
+#include <Runtime\Engine\Classes\Kismet\GameplayStatics.h>
 
 // Sets default values
 ABombermanBomb::ABombermanBomb()
@@ -19,7 +20,6 @@ ABombermanBomb::ABombermanBomb()
     // Create Visible object
     SceneComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SceneComponent"));
     SceneComponent->SetupAttachment(RootComponent);
-    
 }
 
 // Called when the game starts or when spawned
@@ -44,6 +44,14 @@ void ABombermanBomb::Explode(){
 
     // Reduce number of active bombs on player so we can add a new bomb
     bomberman_player->current_bombs--;
+
+    if (ExplosionEffect != NULL) {
+        FVector spawnLocation = GetActorLocation();
+        UGameplayStatics::SpawnEmitterAtLocation(this, ExplosionEffect, spawnLocation, FRotator::ZeroRotator, true, EPSCPoolMethod::AutoRelease);
+    }
+    else {
+        UE_LOG(LogTemp, Warning, TEXT("No explosion effect set on bomb"));
+    }
 
     // TODO(DYYLN): check for nearby enemies and breakable walls
 }
