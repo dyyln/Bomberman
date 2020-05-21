@@ -33,7 +33,7 @@ class BOMBERMAN_API ABombermanPlayer : public APawn
     UPROPERTY(EditAnywhere)
         TSubclassOf<ABombermanBomb> BombClass;
     
-    UBombermanPawnMovementComponent* OurMovementComponent;
+    UBombermanPawnMovementComponent* MovementComponent;
     
 	// Sets default values for this character's properties
 	ABombermanPlayer();
@@ -47,10 +47,6 @@ public:
 	
     int current_bombs = 0;
     int MAX_BOMBS = 1;
-
-    // Current Velocity and Acceleration of the player
-    FVector CurrentVelocity;
-    FVector CurrentAcceleration;
     
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

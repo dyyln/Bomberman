@@ -24,18 +24,19 @@ ABombermanPlayer::ABombermanPlayer()
     // Use a spring arm to give the camera smooth, natural-feeling motion.
     SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraAttachmentArm"));
     SpringArm->SetupAttachment(RootComponent);
-    SpringArm->SetRelativeRotation(FRotator(280.f, 0.f, 0.f));
+    SpringArm->SetRelativeRotation(FRotator(270.f, 0.f, 0.f));
     SpringArm->TargetArmLength = 2000.0f;
     SpringArm->bEnableCameraLag = true;
     SpringArm->CameraLagSpeed = 7.5f;
+    SpringArm->bDoCollisionTest = false;
     
     // Attach our camera and visible object to our root component. Offset and rotate the camera.
     OurCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("OurCamera"));
     OurCamera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
     
     // Add our movement component
-    OurMovementComponent = CreateDefaultSubobject<UBombermanPawnMovementComponent>(TEXT("CustomMovementComponent"));
-    OurMovementComponent->UpdatedComponent = RootComponent;
+    MovementComponent = CreateDefaultSubobject<UBombermanPawnMovementComponent>(TEXT("CustomMovementComponent"));
+    MovementComponent->UpdatedComponent = RootComponent;
     
     // Set pawn to be controller by player
     AutoPossessPlayer = EAutoReceiveInput::Player0;
@@ -73,19 +74,19 @@ void ABombermanPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 }
 
 void ABombermanPlayer::Forward(float amount){
-    OurMovementComponent->AddInputVector(GetActorForwardVector() * amount);
+    MovementComponent->AddInputVector(GetActorForwardVector() * amount);
 }
 
 void ABombermanPlayer::Backward(float amount){
-    OurMovementComponent->AddInputVector(-GetActorForwardVector() * amount);
+    MovementComponent->AddInputVector(-GetActorForwardVector() * amount);
 }
 
 void ABombermanPlayer::Left(float amount){
-    OurMovementComponent->AddInputVector(-GetActorRightVector() * amount);
+    MovementComponent->AddInputVector(-GetActorRightVector() * amount);
 }
 
 void ABombermanPlayer::Right(float amount){
-    OurMovementComponent->AddInputVector(GetActorRightVector() * amount);
+    MovementComponent->AddInputVector(GetActorRightVector() * amount);
 }
 
 void ABombermanPlayer::SpawnBomb(){
@@ -105,7 +106,8 @@ void ABombermanPlayer::SpawnBomb(){
         // Pass a reference to this player
         bomb->bomberman_player = this;
         // Set the transform to the same as the players
-        bomb->SetActorTransform(GetActorTransform());
+        FTransform transform = GetActorTransform();
+        bomb->SetActorTransform(transform);
     }
     
 }
