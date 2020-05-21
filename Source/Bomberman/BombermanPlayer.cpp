@@ -89,12 +89,21 @@ void ABombermanPlayer::Right(float amount){
 }
 
 void ABombermanPlayer::SpawnBomb(){
+    if (current_bombs >= MAX_BOMBS) {
+        // Don't spawwn a bomb if we already have the max amount
+        return;
+    }
+
     // Check to make sure a blueprint has been set, if it has we spawn bomb
     if(BombClass == NULL){
         UE_LOG(LogTemp, Warning, TEXT("No bomb class set on player") );
     }else{
+        current_bombs++;
+
         // Spawn a bomb
         ABombermanBomb* bomb = GetWorld()->SpawnActor<ABombermanBomb>(BombClass->GetAuthoritativeClass());
+        // Pass a reference to this player
+        bomb->bomberman_player = this;
         // Set the transform to the same as the players
         bomb->SetActorTransform(GetActorTransform());
     }

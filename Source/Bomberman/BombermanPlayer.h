@@ -38,12 +38,16 @@ class BOMBERMAN_API ABombermanPlayer : public APawn
 	// Sets default values for this character's properties
 	ABombermanPlayer();
     
-    protected:
+protected:
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
     
-    public:
+public:
 	
+    int current_bombs = 0;
+    int MAX_BOMBS = 1;
+
     // Current Velocity and Acceleration of the player
     FVector CurrentVelocity;
     FVector CurrentAcceleration;

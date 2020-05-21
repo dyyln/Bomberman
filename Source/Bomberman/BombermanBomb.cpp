@@ -2,6 +2,7 @@
 
 
 #include "BombermanBomb.h"
+#include "BombermanPlayer.h"
 
 // Sets default values
 ABombermanBomb::ABombermanBomb()
@@ -27,7 +28,7 @@ void ABombermanBomb::BeginPlay()
 	Super::BeginPlay();
 	//Create a timer to explode
     FTimerHandle MemberTimerHandle;
-    GetWorld()->GetTimerManager().SetTimer(MemberTimerHandle, this, &ABombermanBomb::Explode, 3.0f, false, 3.0f);
+    GetWorld()->GetTimerManager().SetTimer(MemberTimerHandle, this, &ABombermanBomb::Explode, 2.0f, false, 2.0f);
 }
 
 // Called every frame
@@ -40,5 +41,9 @@ void ABombermanBomb::Tick(float DeltaTime)
 // Called by the timer set in BeginPlay
 void ABombermanBomb::Explode(){
     Destroy();
+
+    // Reduce number of active bombs on player so we can add a new bomb
+    bomberman_player->current_bombs--;
+
     // TODO(DYYLN): check for nearby enemies and breakable walls
 }

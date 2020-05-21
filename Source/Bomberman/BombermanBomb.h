@@ -12,13 +12,15 @@ class BOMBERMAN_API ABombermanBomb : public AActor
 {
 	GENERATED_BODY()
         
-        public:
+public:
+
+    class ABombermanPlayer* bomberman_player;
     
     UPROPERTY(EditAnywhere)
-        USceneComponent* SceneComponent;
+    USceneComponent* SceneComponent;
     
     UPROPERTY(EditAnywhere)
-        UBoxComponent* BoxComponent;
+    UBoxComponent* BoxComponent;
     
 	// Sets default values for this actor's properties
 	ABombermanBomb();
@@ -28,8 +30,7 @@ class BOMBERMAN_API ABombermanBomb : public AActor
     
     void Explode();
     
-    protected:
+protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-    
 };
