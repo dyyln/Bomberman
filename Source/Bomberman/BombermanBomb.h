@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Components/BoxComponent.h"
+#include "Components/SphereComponent.h"
 #include "BombermanBomb.generated.h"
 
 UCLASS()
@@ -18,13 +18,12 @@ public:
     
     UPROPERTY(EditAnywhere)
     USceneComponent* SceneComponent;
-    
-    UPROPERTY(EditAnywhere)
-    UBoxComponent* BoxComponent;
 
     UPROPERTY(EditAnywhere)
     class UParticleSystem* ExplosionEffect;
-    
+
+    UPROPERTY(EditAnywhere)
+    float BOMB_RADIUS = 250.f;
 	// Sets default values for this actor's properties
 	ABombermanBomb();
     
