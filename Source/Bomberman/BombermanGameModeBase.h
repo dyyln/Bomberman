@@ -9,6 +9,7 @@
 #include "BombermanPlayerState.h"
 #include "BombermanHUD.h"
 #include "BombermanBaseTile.h"
+#include "BombermanBreakableTile.h"
 #include "BombermanGameModeBase.generated.h"
 
 /**
@@ -21,9 +22,13 @@ class BOMBERMAN_API ABombermanGameModeBase : public AGameModeBase
         
         ABombermanGameModeBase();
 
-
+    // Tiles to be put in grid
     UPROPERTY(EditAnywhere)
         TSubclassOf<ABombermanBaseTile> BaseTileClass;
+
+    // Breakable tiles to get put in between
+    UPROPERTY(EditAnywhere)
+        TSubclassOf<ABombermanBreakableTile> BreakableTileClass;
     
     protected:
     virtual void BeginPlay() override;

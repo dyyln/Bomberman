@@ -54,4 +54,5 @@ void ABombermanBomb::Explode(){
     }
 
     // TODO(DYYLN): check for nearby enemies and breakable walls
+    // bool bIsImplemented = OriginalObject->GetClass()->ImplementsInterface(UDamagable::StaticClass());
 }

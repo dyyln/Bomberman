@@ -14,16 +14,16 @@ void UBombermanPawnMovementComponent::TickComponent(float DeltaTime, enum ELevel
     }
     
     // Apply movement
-    FVector DesiredMovementThisFrame = ConsumeInputVector().GetClampedToMaxSize(1.0f) * DeltaTime * 1000.0f;
-    if (!DesiredMovementThisFrame.IsNearlyZero())
+    FVector movementVector = ConsumeInputVector().GetClampedToMaxSize(1.0f) * DeltaTime * 1000.0f;
+    if (!movementVector.IsNearlyZero())
     {
-        FHitResult Hit;
-        SafeMoveUpdatedComponent(DesiredMovementThisFrame, UpdatedComponent->GetComponentRotation(), true, Hit);
+        FHitResult hitResult;
+        SafeMoveUpdatedComponent(movementVector, UpdatedComponent->GetComponentRotation(), true, hitResult);
         
         // Handle hit result
-        if (Hit.IsValidBlockingHit())
+        if (hitResult.IsValidBlockingHit())
         {
-            SlideAlongSurface(DesiredMovementThisFrame, 1.f - Hit.Time, Hit.Normal, Hit);
+            SlideAlongSurface(movementVector, 1.f - hitResult.Time, hitResult.Normal, hitResult);
         }
     }
 };
