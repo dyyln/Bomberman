@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BombermanGameModeBase.h"
+#include "Math/UnrealMathUtility.h"
 
 ABombermanGameModeBase::ABombermanGameModeBase(){
     DefaultPawnClass = ABombermanPlayer::StaticClass();
@@ -29,7 +30,12 @@ void ABombermanGameModeBase::BeginPlay(){
 
         for (int y = 0; y < 10; y++) {
             for (int x = 0; x < 10; x++) {
-                if ((x + y) % 5 == 0) {
+                if (FMath::RandRange(0, 10) == 0) {
+                    if (x == 5 && y == 4) {
+                        // This is where the player starts so we dont want a tile here
+                        continue;
+                    }
+
                     // Spawn a tile
                     ABombermanBreakableTile* tile = GetWorld()->SpawnActor<ABombermanBreakableTile>(BreakableTileClass->GetAuthoritativeClass());
                     tile->SetActorLocation(FVector(1700.f - x * 400.f + 200.f, -1700.f + y * 400.f + 200.f, 110.f));
