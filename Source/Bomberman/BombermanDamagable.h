@@ -4,19 +4,19 @@
 
 #include "CoreMinimal.h"
 #include "Interface.h"
-#include "Damagable.generated.h"
+#include "BombermanDamagable.generated.h"
 
 /**
  * 
  */
 UINTERFACE(MinimalAPI, Blueprintable)
-class UDamagable : public UInterface
+class UBombermanDamagable : public UInterface
 {
 	GENERATED_BODY()
 	
 };
 
-class IDamagable {
+class IBombermanDamagable {
 	GENERATED_BODY()
 
 public:

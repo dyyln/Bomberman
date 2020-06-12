@@ -4,14 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "BombermanBaseTile.h"
-#include "Damagable.h"
+#include "BombermanDamagable.h"
 #include "BombermanBreakableTile.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class BOMBERMAN_API ABombermanBreakableTile : public ABombermanBaseTile, public IDamagable
+class BOMBERMAN_API ABombermanBreakableTile : public ABombermanBaseTile, public IBombermanDamagable
 {
 	GENERATED_BODY()
 

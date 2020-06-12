@@ -25,5 +25,7 @@ void UBombermanPawnMovementComponent::TickComponent(float DeltaTime, enum ELevel
         {
             SlideAlongSurface(movementVector, 1.f - hitResult.Time, hitResult.Normal, hitResult);
         }
+
+
     }
 };

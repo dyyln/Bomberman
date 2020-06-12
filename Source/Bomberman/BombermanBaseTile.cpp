@@ -8,8 +8,9 @@ ABombermanBaseTile::ABombermanBaseTile()
 {
     // Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
+    SetReplicates(true);
     
-    // Create a dummy root component we can attach things to.
+    // Create a box component that we set as the root
     BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("RootComponent"));
     RootComponent = BoxComponent;
     BoxComponent->SetCollisionProfileName(TEXT("Pawn"));

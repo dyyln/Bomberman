@@ -9,6 +9,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Components/BoxComponent.h"
 #include "BombermanBomb.h"
+#include "BombermanHUD.h"
 #include "BombermanPlayer.generated.h"
 
 UCLASS()
@@ -32,8 +33,9 @@ class BOMBERMAN_API ABombermanPlayer : public APawn
     
     UPROPERTY(EditAnywhere)
         TSubclassOf<ABombermanBomb> BombClass;
-    
-    UBombermanPawnMovementComponent* MovementComponent;
+
+    UPROPERTY(EditAnywhere)
+        UBombermanPawnMovementComponent* MovementComponent;
     
 	// Sets default values for this character's properties
 	ABombermanPlayer();
@@ -47,6 +49,8 @@ public:
 	
     int current_bombs = 0;
     int MAX_BOMBS = 1;
+
+    ABombermanHUD* HUD_reference;
     
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -61,5 +65,6 @@ public:
     void Right(float amount);
     
     // Spawn a bomb
+    UFUNCTION(Server, Reliable)
     void SpawnBomb();
 };

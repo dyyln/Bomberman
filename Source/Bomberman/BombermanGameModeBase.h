@@ -9,6 +9,7 @@
 #include "BombermanPlayerState.h"
 #include "BombermanHUD.h"
 #include "BombermanBaseTile.h"
+#include "BombermanEnemy.h"
 #include "BombermanBreakableTile.h"
 #include "BombermanGameModeBase.generated.h"
 
@@ -29,10 +30,17 @@ class BOMBERMAN_API ABombermanGameModeBase : public AGameModeBase
     // Breakable tiles to get put in between
     UPROPERTY(EditAnywhere)
         TSubclassOf<ABombermanBreakableTile> BreakableTileClass;
+
+
+    // Enemy class to spawn
+    UPROPERTY(EditAnywhere)
+        TSubclassOf<ABombermanEnemy> EnemyClass;
     
     protected:
     virtual void BeginPlay() override;
     
     public:
     virtual void Tick(float delta_time) override;
+
+    int enemies_remaining = 0;
 };

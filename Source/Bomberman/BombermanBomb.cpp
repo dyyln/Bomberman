@@ -3,7 +3,7 @@
 
 #include "BombermanBomb.h"
 #include "BombermanPlayer.h"
-#include "Damagable.h"
+#include "BombermanDamagable.h"
 #include <Runtime\Engine\Classes\Kismet\GameplayStatics.h>
 
 // Sets default values
@@ -11,9 +11,11 @@ ABombermanBomb::ABombermanBomb()
 {
     // Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+    SetReplicates(true);
     
     // Create Visible object
     SceneComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SceneComponent"));
+
 }
 
 // Called when the game starts or when spawned
@@ -54,12 +56,12 @@ void ABombermanBomb::Explode(){
 
     // Get all the actors in the scene that are damagable
     TArray<AActor*> FoundActors;
-    UGameplayStatics::GetAllActorsWithInterface(GetWorld(), UDamagable::StaticClass(), FoundActors);
+    UGameplayStatics::GetAllActorsWithInterface(GetWorld(), UBombermanDamagable::StaticClass(), FoundActors);
 
     // Check distance between actor and bomb
     for (auto actor : FoundActors) {
         if ((this->GetActorLocation() - actor->GetActorLocation()).Size() < BOMB_RADIUS) {
-            IDamagable* damaged_actor = Cast<IDamagable>(actor);
+            IBombermanDamagable* damaged_actor = Cast<IBombermanDamagable>(actor);
             damaged_actor->BombExplodedInRange();
             UE_LOG(LogTemp, Warning, TEXT("Damagable actor found"));
         }
