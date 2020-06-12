@@ -53,8 +53,11 @@ void ABombermanPlayer::BeginPlay()
 {
 	Super::BeginPlay();
 
-    HUD_reference = (ABombermanHUD*)(Cast<APlayerController>(GetController()))->GetHUD();
-    HUD_reference->PlayerPTR = this;
+    APlayerController* Controller = Cast<APlayerController>(GetController());
+    if (Controller != NULL) {
+        HUD_reference = (ABombermanHUD*)(Controller)->GetHUD();
+        HUD_reference->PlayerPTR = this;
+    }
 }
 
 // Called every frame
