@@ -14,7 +14,6 @@ ABombermanEnemy::ABombermanEnemy()
 
     // Create a dummy root component we can attach things to.
     BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("RootComponent"));
-    RootComponent = BoxComponent;
     BoxComponent->SetCollisionProfileName(TEXT("Pawn"));
     BoxComponent->SetBoxExtent(FVector(50.f, 50.f, 50.f));
 
@@ -25,6 +24,8 @@ ABombermanEnemy::ABombermanEnemy()
     // Add our movement component
     MovementComponent = CreateDefaultSubobject<UBombermanCharMovementComponent>(TEXT("CustomMovementComponent"));
     MovementComponent->SetIsReplicated(true);
+
+
 }
 
 // Called when the game starts or when spawned

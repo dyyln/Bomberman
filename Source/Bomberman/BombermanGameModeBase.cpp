@@ -40,11 +40,17 @@ void ABombermanGameModeBase::BeginPlay() {
                 if (FMath::RandRange(0, 4) == 0) {
                     // Spawn a tile
                     ABombermanBreakableTile* tile = GetWorld()->SpawnActor<ABombermanBreakableTile>(BreakableTileClass->GetAuthoritativeClass());
-                    tile->SetActorLocation(FVector(1700.f - x * 400.f + 200.f, -1700.f + y * 400.f + 200.f, 110.f));
+                    if (tile != nullptr) {
+                        tile->SetActorLocation(FVector(1700.f - x * 400.f + 200.f, -1700.f + y * 400.f + 200.f, 110.f));
+                    }
                 }else if (FMath::RandRange(0, 4) == 0) {
                     // Spawn an enemy
-                     //ABombermanEnemy* enemy = GetWorld()->SpawnActor<ABombermanEnemy>(EnemyClass->GetAuthoritativeClass());
-                     //enemy->SetActorLocation(FVector(1700.f - x * 400.f + 200.f, -1700.f + y * 400.f + 200.f, 110.f));
+                    FTransform transform;
+                    transform.SetLocation(FVector(1700.f - x * 400.f + 200.f, -1700.f + y * 400.f + 200.f, 110.f));
+                    ABombermanEnemy* enemy = GetWorld()->SpawnActor<ABombermanEnemy>(EnemyClass->GetAuthoritativeClass(), transform);
+                    if (enemy != nullptr) {
+                        enemy->SetActorLocation(FVector(1700.f - x * 400.f + 200.f, -1700.f + y * 400.f + 200.f, 110.f));
+                    }
                 }
             }
         }

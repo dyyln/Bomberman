@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "BombermanBasePawn.h"
+#include "GameFramework/Character.h"
 #include "BombermanDamagable.h"
 #include "Components/BoxComponent.h"
 #include "BombermanCharMovementComponent.h"
@@ -13,7 +13,7 @@
  * 
  */
 UCLASS()
-class BOMBERMAN_API ABombermanEnemy : public ABombermanBasePawn, public IBombermanDamagable
+class BOMBERMAN_API ABombermanEnemy : public ACharacter, public IBombermanDamagable
 {
 	GENERATED_BODY()
 
