@@ -19,5 +19,5 @@ class BOMBERMAN_API ABombermanBreakableTile : public ABombermanBaseTile, public 
     UPROPERTY(EditAnywhere)
     class UParticleSystem* DestructionEffect;
 
-	virtual bool BombExplodedInRange() override;
+	virtual void BombExplodedInRange() override;
 };

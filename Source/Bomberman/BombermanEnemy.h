@@ -6,7 +6,7 @@
 #include "BombermanBasePawn.h"
 #include "BombermanDamagable.h"
 #include "Components/BoxComponent.h"
-#include "BombermanPawnMovementComponent.h"
+#include "BombermanCharMovementComponent.h"
 #include "BombermanEnemy.generated.h"
 
 /**
@@ -24,13 +24,13 @@ class BOMBERMAN_API ABombermanEnemy : public ABombermanBasePawn, public IBomberm
         UBoxComponent* BoxComponent;
 
     UPROPERTY(EditAnywhere)
-        UBombermanPawnMovementComponent* MovementComponent;
+        UBombermanCharMovementComponent* MovementComponent;
 
 protected:
     // Called when the game starts or when spawned
     virtual void BeginPlay() override;
 
-    virtual bool BombExplodedInRange() override;
+    virtual void BombExplodedInRange() override;
 
 public:
 

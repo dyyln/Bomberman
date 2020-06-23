@@ -17,8 +17,6 @@ class BOMBERMAN_API ABombermanHUD : public AHUD
 
 public:
 
-    class ABombermanPlayer* PlayerPTR;
-
     // Primary draw call for the HUD.
     virtual void DrawHUD() override;
 };

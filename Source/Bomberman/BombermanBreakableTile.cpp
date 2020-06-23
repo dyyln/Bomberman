@@ -4,7 +4,7 @@
 #include "BombermanBreakableTile.h"
 #include <Runtime\Engine\Classes\Kismet\GameplayStatics.h>
 
-bool ABombermanBreakableTile::BombExplodedInRange()
+void ABombermanBreakableTile::BombExplodedInRange()
 {
 	Destroy();
 
@@ -16,6 +16,4 @@ bool ABombermanBreakableTile::BombExplodedInRange()
     else {
         UE_LOG(LogTemp, Warning, TEXT("No destruction effect set on breakable tile"));
     }
-
-	return true;
 }

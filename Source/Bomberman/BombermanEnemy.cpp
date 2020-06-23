@@ -23,12 +23,8 @@ ABombermanEnemy::ABombermanEnemy()
     SceneComponent->SetupAttachment(RootComponent);
 
     // Add our movement component
-    MovementComponent = CreateDefaultSubobject<UBombermanPawnMovementComponent>(TEXT("CustomMovementComponent"));
-    MovementComponent->UpdatedComponent = RootComponent;
+    MovementComponent = CreateDefaultSubobject<UBombermanCharMovementComponent>(TEXT("CustomMovementComponent"));
     MovementComponent->SetIsReplicated(true);
-
-    // Set pawn to be controller by player
-    AutoPossessPlayer = EAutoReceiveInput::Player0;
 }
 
 // Called when the game starts or when spawned
@@ -44,7 +40,7 @@ void ABombermanEnemy::Tick(float DeltaTime)
 
 }
 
-bool ABombermanEnemy::BombExplodedInRange()
+void ABombermanEnemy::BombExplodedInRange()
 {
-	return false;
+    // todo
 }

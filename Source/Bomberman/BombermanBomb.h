@@ -14,6 +14,7 @@ class BOMBERMAN_API ABombermanBomb : public AActor
         
 public:
 
+    UPROPERTY()
     class ABombermanPlayer* bomberman_player;
     
     UPROPERTY(EditAnywhere)
@@ -31,6 +32,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
     
     void Explode();
+
+    UFUNCTION(NetMulticast, Reliable)
+    void CreateExplosionEffect();
     
 protected:
 	// Called when the game starts or when spawned

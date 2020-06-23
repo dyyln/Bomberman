@@ -41,6 +41,4 @@ class BOMBERMAN_API ABombermanGameModeBase : public AGameModeBase
     
     public:
     virtual void Tick(float delta_time) override;
-
-    int enemies_remaining = 0;
 };

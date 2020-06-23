@@ -23,5 +23,5 @@ public:
 
 	// Called when a bomb explodes near this actor
 	UFUNCTION()
-	virtual bool BombExplodedInRange() = 0;
+	virtual void BombExplodedInRange() = 0;
 };

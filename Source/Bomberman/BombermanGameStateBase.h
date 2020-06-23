@@ -13,5 +13,8 @@ UCLASS()
 class BOMBERMAN_API ABombermanGameStateBase : public AGameStateBase
 {
 	GENERATED_BODY()
-	
+
+public:
+
+	int enemies_remaining = 0;
 };
