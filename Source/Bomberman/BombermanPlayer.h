@@ -35,7 +35,7 @@ class BOMBERMAN_API ABombermanPlayer : public ACharacter
         TSubclassOf<ABombermanBomb> BombClass;
 
     UPROPERTY(EditAnywhere)
-        UBombermanCharMovementComponent* MovementComponent;
+        UCharacterMovementComponent* MovementComponent;
     
 	// Sets default values for this character's properties
 	ABombermanPlayer();

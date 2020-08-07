@@ -13,10 +13,10 @@ ABombermanPlayer::ABombermanPlayer()
     // Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-    SetAutonomousProxy(true);
+    //SetAutonomousProxy(true);
 
-    //SetReplicateMovement(true);
-    //SetReplicates(true);
+    SetReplicateMovement(true);
+    SetReplicates(true);
     
     // Create Visible object
     SceneComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SceneComponent"));
@@ -38,7 +38,7 @@ ABombermanPlayer::ABombermanPlayer()
     
     
     // Add our movement component
-    MovementComponent = CreateDefaultSubobject<UBombermanCharMovementComponent>(TEXT("CustomMovementComponent"));
+    MovementComponent = CreateDefaultSubobject<UCharacterMovementComponent>(TEXT("CustomMovementComponent"));
 
     // Set pawn to be controller by player
     //AutoPossessPlayer = EAutoReceiveInput::Player0;
@@ -77,28 +77,24 @@ void ABombermanPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 void ABombermanPlayer::Forward(float amount) {
     if (amount != 0.f) {
         AddMovementInput(GetActorForwardVector() * amount * 1.5f);
-        //MovementComponent->AddInputVector(GetActorForwardVector() * amount * 1.5f);
     }
 }
 
 void ABombermanPlayer::Backward(float amount){
     if (amount != 0.f) {
         AddMovementInput(-GetActorForwardVector() * amount * 1.5f);
-        //MovementComponent->AddInputVector(-GetActorForwardVector() * amount * 1.5f);
     }
 }
 
 void ABombermanPlayer::Left(float amount){
     if (amount != 0.f) {
         AddMovementInput(-GetActorRightVector() * amount * 1.5f);
-        //MovementComponent->AddInputVector(-GetActorRightVector() * amount * 1.5f);
     }
 }
 
 void ABombermanPlayer::Right(float amount){
     if (amount != 0.f) {
         AddMovementInput(GetActorRightVector() * amount * 1.5f);
-        //MovementComponent->AddInputVector(GetActorRightVector() * amount * 1.5f);
     }
 }
 

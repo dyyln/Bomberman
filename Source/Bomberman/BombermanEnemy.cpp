@@ -43,5 +43,5 @@ void ABombermanEnemy::Tick(float DeltaTime)
 
 void ABombermanEnemy::BombExplodedInRange()
 {
-    // todo
+    Destroy();
 }
